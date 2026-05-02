@@ -13,7 +13,7 @@
     <el-menu-item index="/">首页</el-menu-item>
     <el-menu-item index="/about">关于我们</el-menu-item>
     <el-menu-item index="/courses">课程介绍</el-menu-item>
-    <el-menu-item index="/features">特色优势</el-menu-item>
+    <el-menu-item index="/features" @click="handleFeaturesClick">特色优势</el-menu-item>
     <el-menu-item index="/contact">联系我们</el-menu-item>
 
     <!-- 用户头像下拉菜单 -->
@@ -57,6 +57,15 @@ onMounted(async () => {
 const handleSelect = (key: string) => {
   if (key !== '/user-menu' && key !== '/logout') {
     router.push(key)
+  }
+}
+
+const handleFeaturesClick = async () => {
+  const result = await apiCheckLogin()
+  if (result.data.isLoggedIn) {
+    router.push('/features')
+  } else {
+    router.push({ path: '/login', query: { redirect: '/features' } })
   }
 }
 

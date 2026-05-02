@@ -30,7 +30,8 @@ const routes = [
   {
     path: '/features',
     name: 'Features',
-    component: FeaturesView
+    component: FeaturesView,
+    meta: { requiresAuth: true }
   },
   {
     path: '/contact',
